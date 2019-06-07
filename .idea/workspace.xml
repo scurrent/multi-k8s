@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d293a46-6200-4e06-be2d-5eb0d0936557" name="Default" comment="" />
+    <list default="true" id="9d293a46-6200-4e06-be2d-5eb0d0936557" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s/deploy-to-googlecloud.txt" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/deploy-to-googlecloud.txt" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,11 +63,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deploy-to-googlecloud.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="deploy-to-googlecloud.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/k8s/deploy-to-googlecloud.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="461">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".travis.yaml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.travis.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -83,15 +95,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
               <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="database-persistent-volume-claim.yaml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/k8s/database-persistent-volume-claim.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -127,6 +130,7 @@
         <option value="$PROJECT_DIR$/k8s/server-deployment.yaml" />
         <option value="$PROJECT_DIR$/k8s/notes.txt" />
         <option value="$PROJECT_DIR$/k8s/deploy-to-googlecloud.txt" />
+        <option value="$PROJECT_DIR$/.travis.yaml" />
       </list>
     </option>
   </component>
@@ -169,16 +173,6 @@
             <path>
               <item name="complexK8s" type="b2602c69:ProjectViewProjectNode" />
               <item name="complexK8s" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="complexK8s" type="b2602c69:ProjectViewProjectNode" />
-              <item name="complexK8s" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="complexK8s" type="b2602c69:ProjectViewProjectNode" />
-              <item name="complexK8s" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -253,12 +247,12 @@
       <updated>1559836142544</updated>
       <workItem from="1559836146507" duration="1844000" />
       <workItem from="1559847856217" duration="699000" />
-      <workItem from="1559848749918" duration="9545000" />
+      <workItem from="1559848749918" duration="11980000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12088000" />
+    <option name="totallyTimeSpent" value="14523000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1777" y="74" width="1440" height="899" extended-state="0" />
@@ -423,8 +417,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/k8s/deploy-to-googlecloud.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="461">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
         </state>
       </provider>
     </entry>

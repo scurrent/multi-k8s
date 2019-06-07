@@ -7,3 +7,26 @@ git remote remove origin
 git remote add origin git@github.com:scurrent/multi-k8s.git
 
 git remote -v
+
+
+download and install the travis-cli - but it requires ruby to be installed on your local
+
+lets get a docker image with Ruby pre-installed, then we can instsall travis cli in there
+
+
+docker run -it -v $(pwd):/app ruby:2.3 sh           - download ruby ruby and run the shell
+gem install travis --no-rdoc --no-ri                -ruby installer gem (alpine doesn't have gem)
+gem install travis
+travis login                            - use github username and password
+
+- copy json file into the 'volumend' directory so we can use it in the container
+travis encrypt-file service-account.json -r scurrent/multi-k8s
+
+ls
+cd app
+ls inside app should see the copied in .json file
+
+
+
+
+

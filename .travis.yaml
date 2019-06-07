@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+before_install:
+#got this command when encrypting the password file
+  - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in service-account.json.enc -out service-account.json -d
+
+#download and install google cloud sdk
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  - source $HOME/google-cloud-sdk/path.bash.inc
+#install kubectl in travis environ
+  - gcloud components update kubectl
+#password access
+  - gcloud auth activate-service-account --key-file service-account.json
+
