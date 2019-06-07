@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: postgres
+  template:
+    metadata:
+      labels:
+        component: postgres
+    spec:
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: database-persistent-volume-claim
+      containers:
+        - name: postgres
+          image: postgres   #use the secret we created
+          ports:
+            - containerPort: 5432   #default port
+          volumeMounts:
+            - name: postgres-storage #needs to match name above
+              mountPath: /var/lib/postresqsl/data  #default place where postgres stores it data
+              subPath: postgres   # subfolder in which postgres wants to save data
+#get the secret we created
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD
+
+
+#postgres is the default image
+
+#kubectl get pv
+#kubectl get pvc

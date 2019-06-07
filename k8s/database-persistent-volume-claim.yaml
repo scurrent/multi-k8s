@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: database-persistent-volume-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+#other possible options for storage
+#kubectl get storageclass
+#kubectl describe storageclass
+
+# Google Cloud Persistent disk, Azure file, azure disk, AWS block store, etc
+#https://kubernetes.io/docs/concepts/storage/persistent-volumes/

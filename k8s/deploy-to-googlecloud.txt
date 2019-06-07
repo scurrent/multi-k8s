@@ -1,0 +1,9 @@
+ls -a
+(if a .git)
+git remote -v
+delete that remote
+git remote remove origin
+
+git remote add origin git@github.com:scurrent/multi-k8s.git
+
+git remote -v

@@ -1,0 +1,30 @@
+using an ingress-nginx a commutilty led repo
+
+https://github.com/kubernetes/ingress-nginx
+
+
+this project is aware that it is working in a cluster - can skip the clusterIP service, for example sticky sessions
+
+For reading
+https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html
+
+
+different from:
+https://github.com/nginxinc/kubernetes-ingress
+
+
+
+
+different depending on AWS / Azure / GC
+
+
+
+https://kubernetes.github.io/ingress-nginx/deploy/
+
+
+LOCAL
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
+minikube addons enable ingress
+
+If you restart this and forget to create the password, it will fail

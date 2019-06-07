@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: server
+  ports:
+    - port: 5000
+      targetPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: scurrent/multi-server
+          ports:
+            - containerPort: 5000
+
+
+#multiserver is expecting environment variables - for postgres and redis
+
+# you can co-locate all service configure files

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: scurrent/multi-server
+          ports:
+            - containerPort: 5000
+          env:
+            - name: REDIS_HOST   #name of the redis cluster IP service
+              value: redis-cluster-ip-service
+            - name: REDIS_POST
+              value: '6379'      # cannot convert int64 to string
+            - name: PGUSER
+              value: postgres
+            - name: PGHOST #name of the postgres cluster IP service
+              value: postgres-cluster-ip-service
+            - name: PGPORT #defaultvalue
+              value: '5432'
+            - name: PGDATABASE
+              value: postgres
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword        #kubectl get secret
+                  key: PGPASSWORD
+
+
+#multiserver is expecting environment variables - for postgres and redis
+
+
+#kubectl create secret generic <secret name> --from-literal key=value
+#kubectl create secret generic pgpassword --from-literal PGPASSWORD=password
+#other types of secret (tls or dockerregistry)
+
+#kubectl get secrets
+
