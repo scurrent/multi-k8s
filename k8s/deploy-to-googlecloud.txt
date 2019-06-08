@@ -27,6 +27,134 @@ cd app
 ls inside app should see the copied in .json file
 
 
+activate google cloud shell and run the following to create secret
 
+gcloud config set project multi-k8s-scurrent
+gcloud config set compute/zone us-central1-a
+gcloud container clusters get-credentials standard-cluster-1
+
+and now:
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=password123
+
+then it should be visible
+
+
+https://kubernetes.github.io/ingress-nginx/deploy/#using-helm
+
+to get
+github.com/helm/helm
+
+helm client  - like a CLI
+and
+tiller server   - tiller is like a pod
+
+
+#install helm from script
+
+$ curl -LO https://git.io/get_helm.sh
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
+
+
+#WHAT is RBAC
+Role Based Access Control
+
+Limits who can access and modify obj in our cluster
+enabled on Google Clou by default
+Tiller wants to make changes to our cluster, so it needs to get some permissions set.
+
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-role --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+
+helm init --service-account tiller --upgrade
+
+NOW INSTALL THE NGINX INGReee controller
+
+Docs:https://kubernetes.github.io/ingress-nginx/deploy/#using-helm
+
+helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
+
+
+
+WHAT WE GET:
+RESOURCES:
+==> v1/ConfigMap
+NAME                               DATA  AGE
+my-nginx-nginx-ingress-controller  0     1s
+
+==> v1/Pod(related)
+NAME                                                     READY  STATUS             RESTARTS  AGE
+my-nginx-nginx-ingress-controller-5fbf6bff6f-887k2       0/1    ContainerCreating  0         0s
+my-nginx-nginx-ingress-default-backend-76cc74cbb8-nxbk8  0/1    ContainerCreating  0         0s
+
+==> v1/Service
+NAME                                    TYPE          CLUSTER-IP     EXTERNAL-IP  PORT(S)                     AGE
+my-nginx-nginx-ingress-controller       LoadBalancer  10.11.255.125  <pending>    80:31061/TCP,443:30993/TCP  0s
+my-nginx-nginx-ingress-default-backend  ClusterIP     10.11.252.102  <none>       80/TCP                      0s
+
+==> v1/ServiceAccount
+NAME                    SECRETS  AGE
+my-nginx-nginx-ingress  1        1s
+
+==> v1beta1/ClusterRole
+NAME                    AGE
+my-nginx-nginx-ingress  0s
+
+==> v1beta1/ClusterRoleBinding
+NAME                    AGE
+my-nginx-nginx-ingress  0s
+
+==> v1beta1/Deployment
+NAME                                    READY  UP-TO-DATE  AVAILABLE  AGE
+my-nginx-nginx-ingress-controller       0/1    1           0          0s
+my-nginx-nginx-ingress-default-backend  0/1    1           0          0s
+
+==> v1beta1/Role
+NAME                    AGE
+my-nginx-nginx-ingress  0s
+
+==> v1beta1/RoleBinding
+NAME                    AGE
+my-nginx-nginx-ingress  0s
+
+
+NOTES:
+The nginx-ingress controller has been installed.
+It may take a few minutes for the LoadBalancer IP to be available.
+You can watch the status by running 'kubectl --namespace default get services -o wide -w my-nginx-nginx-ingress-controller'
+
+An example Ingress that makes use of the controller:
+
+  apiVersion: extensions/v1beta1
+  kind: Ingress
+  metadata:
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    name: example
+    namespace: foo
+  spec:
+    rules:
+      - host: www.example.com
+        http:
+          paths:
+            - backend:
+                serviceName: exampleService
+                servicePort: 80
+              path: /
+    # This section is only required if TLS is to be enabled for the Ingress
+    tls:
+        - hosts:
+            - www.example.com
+          secretName: example-tls
+If TLS is enabled for the Ingress, a Secret containing the certificate and key must also be provided:
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: example-tls
+    namespace: foo
+  data:
+    tls.crt: <base64 encoded cert>
+    tls.key: <base64 encoded key>
+  type: kubernetes.io/tls
 
 

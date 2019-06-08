@@ -1,6 +1,12 @@
 sudo: required
 services:
   - docker
+env:
+  global:
+#gets the current git commit version and assigns it to the variable "SHA"
+    - SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
 before_install:
 #got this command when encrypting the password file
   - openssl aes-256-cbc -K $encrypted_0c35eebf403c_key -iv $encrypted_0c35eebf403c_iv -in service-account.json.enc -out service-account.json -d
@@ -12,4 +18,19 @@ before_install:
   - gcloud components update kubectl
 #password access
   - gcloud auth activate-service-account --key-file service-account.json
+  - gcloud config set project multi-k8s-scurrent
+  - gcloud config set compute/zone us-central1-a
+  - gcloud container clusters get-credentials standard-cluster-1
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t scurrent/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+#  - docker run scurrent/react-test npm test
+  - docker run scurrent/react-test npm run test-coverage
+
+deploy:
+  provider: script  # no preset, we will provide scripts to do what we need
+  script: bash ./deploy.sh   # wee will create a script called deploy.sh
+  on:
+    branch: master
 
