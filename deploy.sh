@@ -1,6 +1,10 @@
-docker build -t scurrent/multi-client:latest -t/scurrent/multi-client:$SHA -f ./client/Dockerfile ./client
-docker build -t scurrent/multi-server:latest -t/scurrent/multi-server:$SHA -f ./server/Dockerfile ./server
-docker build -t scurrent/multi-worker:latest -t/scurrent/multi-worker:$SHA -f ./worker/Dockerfile ./worker
+echo in shell file
+echo $SHA
+
+
+docker build -t scurrent/multi-client:latest -t scurrent/multi-client:$SHA -f ./client/Dockerfile ./client
+docker build -t scurrent/multi-server:latest -t scurrent/multi-server:$SHA -f ./server/Dockerfile ./server
+docker build -t scurrent/multi-worker:latest -t scurrent/multi-worker:$SHA -f ./worker/Dockerfile ./worker
 
 docker push scurrent/multi-client:latest
 docker push scurrent/multi-server:latest
