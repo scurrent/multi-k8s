@@ -1,7 +1,6 @@
 echo in shell file
 echo $SHA
 
-
 docker build -t scurrent/multi-client:latest -t scurrent/multi-client:$SHA -f ./client/Dockerfile ./client
 docker build -t scurrent/multi-server:latest -t scurrent/multi-server:$SHA -f ./server/Dockerfile ./server
 docker build -t scurrent/multi-worker:latest -t scurrent/multi-worker:$SHA -f ./worker/Dockerfile ./worker
@@ -19,3 +18,5 @@ kubectl apply -f k8s
 kubectl set image deployments/server-deployment server=scurrent/multi-server:$SHA
 kubectl set image deployments/client-deployment server=scurrent/multi-client:$SHA
 kubectl set image deployments/worker-deployment server=scurrent/multi-worker:$SHA
+
+echo end of deploy script
